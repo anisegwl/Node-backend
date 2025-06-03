@@ -1,9 +1,10 @@
 const express = require('express');
 const Product = require('../model/Product');
+const fetchUser = require("../middleware/Fetchuser");
 const router = express.Router()
 
 
-router.post("/addproduct", async (req, res) => {
+router.post("/addproduct", fetchUser , async (req, res) => {
     try {
      const {title, price, description, inStock} = req.body;
      const product = new Product({
