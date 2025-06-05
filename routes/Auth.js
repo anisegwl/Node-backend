@@ -5,15 +5,16 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { body, validationResult } = require("express-validator");
 const fetchUser = require("../middleware/fetchuser");
+const Product = require("../model/Product");
 
 const secret = process.env.SECRET;
 
-// Ideally, use process.env.JWT_SECRET
 
 // Dummy route (can be improved to return real users)
 router.get("/users", (req, res) => {
   res.send("all user from database");
 });
+
 
 // User registration route
 router.post(
