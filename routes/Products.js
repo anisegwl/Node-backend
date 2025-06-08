@@ -39,7 +39,7 @@ router.post(
   ],
   async (req, res) => {
     try {
-      const { title, price, description, instock } = req.body;
+      const { title, price, description, instock , image } = req.body;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -49,6 +49,7 @@ router.post(
         description,
         price,
         instock,
+        image,
         user: req.user.id,
       });
       const savedProduct = await product.save();
