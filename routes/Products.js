@@ -39,11 +39,15 @@ router.post(
   ],
   async (req, res) => {
     try {
-      const { title, price, description, instock , image } = req.body;
+      const { title, price, description, instock} = req.body;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
+      let image = req.files.map((el)=>{
+        return el.filename
+      });
+      
       const product = new Product({
         title,
         description,
