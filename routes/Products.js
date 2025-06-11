@@ -36,11 +36,10 @@ router.post(
       .withMessage("description must be atleast 5 character"),
     body("price").isNumeric().withMessage("price must be a number"),
     body("instock").isNumeric().withMessage("instock must be a number"),
-    body("discount").isNumeric().withMessage("discount must be a number"),
   ],
   async (req, res) => {
     try {
-      const { title, price, description, instock} = req.body;
+      const { title, price, description, instock,discount} = req.body;
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -55,6 +54,7 @@ router.post(
         price,
         instock,
         image,
+        discount,
         user: req.user.id,
       });
       const savedProduct = await product.save();
@@ -66,7 +66,7 @@ router.post(
 );
 
 router.put("/updateproduct/:id", fetchUser, async (req, res) => {
-  const { title, price, description, instock } = req.body;
+  const { title, price, description, instock, discount } = req.body;
   // console.log("req body", req.body);
 
   try {
@@ -75,6 +75,7 @@ router.put("/updateproduct/:id", fetchUser, async (req, res) => {
     if (price) newProduct.price = price;
     if (description) newProduct.description = description;
     if (instock) newProduct.instock = instock;
+    if(discount !== undefined) newProduct.discount = discount;
 
     let product = await Product.findById(req.params.id);
     if (!product) {
