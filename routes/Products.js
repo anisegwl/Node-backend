@@ -36,6 +36,7 @@ router.post(
       .withMessage("description must be atleast 5 character"),
     body("price").isNumeric().withMessage("price must be a number"),
     body("instock").isNumeric().withMessage("instock must be a number"),
+    body("discount").isNumeric().withMessage("discount must be a number"),
   ],
   async (req, res) => {
     try {

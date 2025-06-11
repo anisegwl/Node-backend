@@ -27,6 +27,10 @@ const productSchema = new Schema({
     type: [String],
     required: false,
   },
+  discount:{
+    type:Number,
+    required: true,
+  },
   date: {
     type: Date,
     default: Date.now,
