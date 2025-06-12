@@ -6,7 +6,10 @@ const router = express.Router();
 
 router.get("/getallproduct", fetchUser, async (req, res) => {
   try {
-    const products = await Product.find({});
+    const searchQuery = req.query.searchQuery?{
+      title: { $regex: req.query.searchQuery, $options: 'i' }
+    }:{};
+    const products = await Product.find({...searchQuery});
     res.json(products);
   } catch (error) {
     console.error(error.message);
