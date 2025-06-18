@@ -31,6 +31,11 @@ const productSchema = new Schema({
     type:Number,
     required:true,
   },
+  category: {
+    type: String,
+    enum: ['Men', 'Women'],
+    required: true
+  },
   date: {
     type: Date,
     default: Date.now,
