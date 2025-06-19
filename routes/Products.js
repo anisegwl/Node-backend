@@ -55,8 +55,8 @@ router.post(
     body("price").isNumeric().withMessage("Price must be a number"),
     body("instock").isNumeric().withMessage("Stock must be a number"),
     body("category")
-      .isIn(["Men", "Women"])
-      .withMessage("Category must be either 'Men' or 'Women'"),
+      .isIn(["Men", "Women","Supplements"])
+      .withMessage("Category must be either 'Men','Women' or 'supplements' "),
   ],
   async (req, res) => {
     try {
