@@ -33,7 +33,7 @@ const productSchema = new Schema({
   },
   category: {
     type: String,
-    enum: ['Men', 'Women','Supplements'],
+    enum: ['Men', 'Women','Supplements','Accessories'],
     required: true
   },
   date: {
